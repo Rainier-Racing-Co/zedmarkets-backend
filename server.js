@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3002;
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const { graphqlHTTP} = require('express-graphql');
+const { buildSchema } = require('graphql');
 const Horse = require('./models/Horse.js');
 // const mongoose = require('mongoose');
 // const verifyUser = require('./auth');
@@ -16,6 +18,21 @@ const Horse = require('./models/Horse.js');
 // Use
 app.use(cors());
 app.use(express.json());
+
+//GraphQL Setup
+var schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+const root = { hello: () => 'Hello world!' };
+
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
 
 // Connect DB
 // const db = mongoose.connection;
