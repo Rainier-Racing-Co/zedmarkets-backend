@@ -40,7 +40,7 @@ app.get('/test', (req, res) => {
 //Get all race results
 
 //Get one horse's stats
-// app.post('/horse_stats', postHorseStats);
+app.post('/horse_stats', postHorseStats);
 
 //Hawku API is GET Requests
 //Hawku URL Ex: https://api.hawku.com/api/v1/marketplace/sales?asset_contract_address=123&timestamp_start=1650860000&timestamp_end=1650869999&offset=100
@@ -52,24 +52,21 @@ app.get('/test', (req, res) => {
 
 // Functions
 
-async function getHorseStats(req, res) {
-  if(err) {
-    res.send('Invalid Token');
-  } else {
-    try{
-      console.log(req);
-      let results = await Horse.find();
-      console.log(results);
-      if(results.length > 0) {
-        res.status(200).send(results);
-      } else {
-        res.status(404).send('error');
-      }
-    } catch(err) {
+async function postHorseStats(req, res) {
+  try{
+    console.log(req);
+    let results = await Horse.find();
+    console.log(results);
+    if(results.length > 0) {
+      res.status(200).send(results);
+    } else {
+      res.status(404).send('error');
+    }
+  } catch(err) {
       res.status(500).send('There was a server error. Please try again later.');
     }
-  }
 }
+
 
 // Server Error Handling
 app.use('*', (req,res) => {
