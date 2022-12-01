@@ -2,7 +2,7 @@
 
 // REQUIRE
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLInt, GraphQLFloat } = graphql;
 const _ = require('lodash');
 // Dummy Data
 
@@ -240,25 +240,23 @@ let horses = [{
 
 // Horse Schema
 const HorseType = new GraphQLObjectType({
-  type: 'Horse',
+  name: 'Horse',
   fields: () => ({
     name: {type: GraphQLString},
-    nft_id: {type: Number},
+    nft_id: {type: GraphQLInt},
     img_url: {type: GraphQLString},
     gen: {type: GraphQLString},
     bloodline: {type: GraphQLString},
     breed_type: {type: GraphQLString},
     color: {type: GraphQLString},
-    inserted_at: {type: Date},
-    last_breeding_reset: {type: Date},
-    breeding_counter: {type: Number},
+    breeding_counter: {type: GraphQLInt},
     horse_type: {type: GraphQLString},
-    race_statistic: {
-      first_place_finishes: {type: Number},
-      second_place_finishes: {type: Number},
-      third_place_finishes: {type: Number},
-      number_of_races: {type: Number},
-      win_rate: {type: Number}
+    race_statistic: {type: 
+      // first_place_finishes: {type: GraphQLInt},
+      // second_place_finishes: {type: GraphQLInt},
+      // third_place_finishes: {type: GraphQLInt},
+      // number_of_races: {type: GraphQLInt},
+      // win_rate: {type: GraphQLFloat}
     },
     offsprings: {
       bloodline: {type: GraphQLString},
@@ -266,13 +264,13 @@ const HorseType = new GraphQLObjectType({
       color: {type: GraphQLString},
       gen: {type: GraphQLString},
       horse_type: {type: GraphQLString},
-      nft_id: {type: Number},
+      nft_id: {type: GraphQLInt},
       race_statistic: {
-        first_place_finishes: {type: Number},
-        second_place_finishes: {type: Number},
-        third_place_finishes: {type: Number},
-        number_of_races: {type: Number},
-        win_rate: {type: Number}
+        first_place_finishes: {type: GraphQLInt},
+        second_place_finishes: {type: GraphQLInt},
+        third_place_finishes: {type: GraphQLInt},
+        number_of_races: {type: GraphQLInt},
+        win_rate: {type: GraphQLFloat}
       },
     }
   })
@@ -283,7 +281,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     horse: {
       type: HorseType,
-      args: {nft_id: {type: Number}},
+      args: {nft_id: {type: GraphQLInt}},
       resolve(parent, args){
         //code to get data from db/other source
         return _find(horses, {nft_id: args.nft_id});

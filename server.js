@@ -16,7 +16,8 @@ const PORT = process.env.PORT || 3002;
 app.use(cors());
 app.use(express.json());
 app.use('/graphql', graphqlHTTP({
-  schema
+  schema,
+  graphiql: true
 }));
 
 // Connect DB
