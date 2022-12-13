@@ -7,6 +7,7 @@ const app = express();
 const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/horse_stat_schema.js');
+var horse = require('./modules/horse.js');
 // const mongoose = require('mongoose');
 // const verifyUser = require('./auth');
 // const Horse = require('./models/Horse.js');
@@ -37,6 +38,7 @@ app.get('/test', (req, res) => {
   res.send('Hello, from the ZEDMarket.io server! Test complete; sever operational.');
 });
 
+app.get('/horse', horse);
 //ZED API is POST Requests via GraphQL
 //ZED API URL: https://zed-ql.zed.run/graphql
 

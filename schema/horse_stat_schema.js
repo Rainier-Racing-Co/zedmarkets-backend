@@ -251,7 +251,7 @@ const HorseType = new GraphQLObjectType({
     color: {type: GraphQLString},
     breeding_counter: {type: GraphQLInt},
     horse_type: {type: GraphQLString},
-    race_statistic: {type: 
+    race_statistic: {type: GraphQLString
       // first_place_finishes: {type: GraphQLInt},
       // second_place_finishes: {type: GraphQLInt},
       // third_place_finishes: {type: GraphQLInt},
