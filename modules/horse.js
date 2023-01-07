@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { request, response } = require('express');
+// const { request, response } = require('express');
+const { req, res } = require('express');
 
 const GRAPHQL_API = 'https://zed-ql.zed.run/graphql';
 const GET_HORSE_DATA_QUERY = `

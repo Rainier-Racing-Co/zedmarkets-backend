@@ -8,6 +8,7 @@ const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/horse_stat_schema.js');
 var horse = require('./modules/horse.js');
+var markets = require('./modules/markets.js');
 // const mongoose = require('mongoose');
 // const verifyUser = require('./auth');
 // const Horse = require('./models/Horse.js');
@@ -39,6 +40,7 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/horse', horse);
+app.get('/markets', markets);
 //ZED API is POST Requests via GraphQL
 //ZED API URL: https://zed-ql.zed.run/graphql
 
